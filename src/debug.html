@@ -1,0 +1,61 @@
+﻿
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sfx Grid</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="grid.css" />
+		<style>
+			.page { padding: 30px;  font-family: sans-serif; color: #333; font-size: 14px; }
+		</style>
+	</head>
+	<body>	
+		<div class="page">
+			<h1>Basic Example</h1>
+			<div id="grid1" style="height:400px;width:700px"></div>
+		</div>	
+
+		<script src="s.js"></script>
+		<script src="s.grid.js"></script>
+		<script src="s.grid.builder.js"></script>
+		<script src="s.grid.focus.js"></script>
+		<script src="s.grid.edit.js"></script>
+		<script src="s.grid.keyEvents.js"></script>
+		<script src="s.grid.mouseEvents.js"></script>
+
+		<script type='text/javascript'>
+
+			var columns = [ 
+				{ text: 'A', width: 150 }, 
+				{ text: 'B', width: 250 }, 
+				{ text: 'C', width: 250 }
+			];
+
+			var grid = new S.grid("grid1");
+			grid.columns = columns;	
+			grid.values = createValues(200);
+			grid.update();
+			grid.values = createValues(500);
+			grid.reload();
+
+			function createValues(count) {
+				var values = [];
+				for (var i = 0; i < count; i++) {
+					var row = [];
+					values.push(row);
+					for (var k = 0; k < 4; k++) {
+						row.push("hola " + i);
+					}
+				}
+				return values;
+			}	
+			
+			grid.onCellChanged = function(newValue, oldValue, cell) {
+				console.log(
+					"Celda", cell.rowIndex, cell.columnIndex, 
+					"Antiguo valor:", oldValue,
+					"Nuevo:", newValue);
+			}
+		</script>
+	</body>
+</html>

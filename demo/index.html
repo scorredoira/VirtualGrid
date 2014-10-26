@@ -1,0 +1,51 @@
+﻿
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Virtual Grid</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+		<link rel="stylesheet" href="grid.css" />
+		<style>
+			.page { padding: 30px;  font-family: sans-serif; color: #333; font-size: 14px; }
+			.margin { margin: 20px 0; line-height: 1.5em; }
+		</style>
+	</head>
+	<body>	
+		<div class="page">
+			<h1>Virtual Grid</h1>
+			<ul class="margin">
+				<li>Handle millions of rows fast and efficiently.</li>
+				<li>Single 9 kB file. No dependencies.</li>
+			</ul> 
+			<div class="margin">
+				<input type="button" value="250 rows" onclick="setModel(250)" />
+				<input type="button" value="2,500 rows" onclick="setModel(2500)" />
+				<input type="button" value="25,000 rows" onclick="setModel(25000)" />
+				<input type="button" value="250,000 rows" onclick="setModel(250000)" />
+				<input type="button" value="1,000,000 rows" onclick="setModel(1000000)" />
+			</div>
+			<div id="grid1" style="height:400px;width:700px"></div>
+		</div>			
+
+		<script src="grid.js"></script>
+		<script type='text/javascript'>
+			var columns = [ 
+				{ text: 'A', width: 150 }, 
+				{ text: 'B', width: 250 }, 
+				{ text: 'C', width: 250 }
+			];
+
+			var values = [
+				[ 1, 3, 5 ],
+				[ 8, 6, 9 ],
+				[ 8, 6, 9 ]
+			];
+
+			var grid = new S.grid("grid1");
+			grid.columns = columns;
+			grid.values = values;
+			grid.update();	
+		</script>
+	</body>
+</html>
